@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+
+    <!--
+      SEGURO: allowBackup="false" -> sin copias de seguridad en la nube ni "adb backup"
+      (MASVS-STORAGE-2, OWASP M9).
+      SEGURO: dataExtractionRules (Android 12+) y fullBackupContent (Android 11 o
+      anterior) excluyen además las preferencias de sesión; en Android 12+ la
+      transferencia dispositivo-a-dispositivo NO respeta allowBackup="false", por
+      eso se excluyen explícitamente (MASVS-STORAGE-2).
+      SEGURO: no se declara android:debuggable; en release vale false.
+      SEGURO: network_security_config sin cleartext, sin CAs de usuario y con
+      pinning (MASVS-NETWORK-1, MASVS-NETWORK-2, OWASP M5).
+    -->
+    <application
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MiBanco">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

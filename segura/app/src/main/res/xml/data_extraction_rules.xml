@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SEGURO: Android 12+: no se copian las preferencias de sesión ni en backup
+     en la nube ni en transferencia entre dispositivos (MASVS-STORAGE-2).
+     (Además el token cifrado no serviría en otro equipo: la llave vive en el
+     Keystore de ESTE dispositivo y no es exportable.) -->
+<data-extraction-rules>
+    <cloud-backup>
+        <!-- "." = TODAS las SharedPreferences, incluida sesion.xml -->
+        <exclude domain="sharedpref" path="." />
+    </cloud-backup>
+    <device-transfer>
+        <!-- "." = TODAS las SharedPreferences, incluida sesion.xml -->
+        <exclude domain="sharedpref" path="." />
+    </device-transfer>
+</data-extraction-rules>
