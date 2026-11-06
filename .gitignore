@@ -1,0 +1,37 @@
+# ---- Certificados: NUNCA commitear llaves privadas ----
+certs/
+*.key
+*.pem
+*.p12
+*.srl
+
+# ---- Python ----
+.venv/
+__pycache__/
+*.pyc
+
+# ---- Herramientas descargadas por setup-env.sh ----
+tools/
+
+# ---- Android / Gradle ----
+.gradle/
+build/
+local.properties
+*.apk
+*.aab
+.idea/
+*.iml
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Copia de la CA de demo dentro de cada app (se regenera con gen-certs.sh)
+**/res/raw/demo_ca.pem
+**/res/raw/demo_ca.crt
+
+# ---- Salidas de los scripts de ataque ----
+out/
+
+# ---- SO ----
+.DS_Store
+Thumbs.db
