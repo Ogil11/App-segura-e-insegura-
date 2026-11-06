@@ -1,0 +1,7 @@
+# Los scripts de bash y gradlew deben tener finales de línea LF (si no, bash falla
+# en Git Bash/Linux/macOS con errores como "$'\r': command not found").
+*.sh      text eol=lf
+gradlew   text eol=lf
+*.bat     text eol=crlf
+*.ps1     text eol=crlf
+*.jar     binary
