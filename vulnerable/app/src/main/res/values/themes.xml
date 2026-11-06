@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tema base del sistema; los colores de la UI los pone Compose (Material 3). -->
+    <style name="Theme.MiBanco" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#0D47A1</item>
+    </style>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!--
+      VULNERABLE: cleartextTrafficPermitted="true" permite HTTP sin cifrar
+      (MASVS-NETWORK-1, OWASP M5).
+      VULNERABLE: <certificates src="user"/> hace que la app confíe en cualquier CA
+      que el usuario (o un atacante con acceso al teléfono, o un MDM) instale,
+      p. ej. la CA de mitmproxy -> intercepción TLS (MASVS-NETWORK-1/2, OWASP M5).
+      VULNERABLE: no hay <pin-set> (sin certificate pinning) (MASVS-NETWORK-2).
+    -->
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+            <!-- CA de laboratorio, para validar el backend local (copiada por gen-certs.sh) -->
+            <certificates src="@raw/demo_ca" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>
