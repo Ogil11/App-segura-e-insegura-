@@ -85,6 +85,18 @@ python_sistema() {
   return 1
 }
 
+# Ruta de la PC en formato nativo (C:/...) para pasarla a programas de Windows.
+ruta_nativa() {
+  if [[ "$SO" == "windows" ]]; then cygpath -m "$1"; else echo "$1"; fi
+}
+
+# adb para comandos con rutas DEL DISPOSITIVO (/sdcard/...): en Git Bash evita
+# que MSYS las convierta en rutas de Windows ("C:/Program Files/Git/sdcard/...").
+# Las rutas de la PC que se le pasen deben ir con ruta_nativa.
+adb_dispositivo() {
+  MSYS_NO_PATHCONV=1 MSYS2_ARG_CONV_EXCL="*" "$ADB" "$@"
+}
+
 # Comprueba que adb exista y haya un emulador conectado
 requiere_dispositivo() {
   if [[ ! -x "$ADB" ]]; then error "No se encontró adb en $ADB. Ejecuta scripts/setup-env.sh"; exit 1; fi
